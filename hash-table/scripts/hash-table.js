@@ -4,10 +4,27 @@ function HashTable() {
 
     var add = function(key, value) {
         // Fill in
+        var hash = calculate(key);
+
+        while(data[hash] !== undefined && data[hash].key != key) {
+            hash++;
+        }
+
+        data[hash] = {
+            key: key,
+            value: value
+        };
     };
 
     var find = function(key) {
         // Fill in
+        var hash = calculate(key);
+
+        while(data[hash] === undefined || data[hash].key != key) {
+            hash++;
+        }
+
+        return data[hash].value;
     };
 
     var length = function() {

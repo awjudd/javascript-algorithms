@@ -4,14 +4,17 @@ function Queue() {
 
     var add = function(element) {
         // Fill in-kk
+        data.push(element);
     };
 
     var remove = function() {
         // Fill in
+        return data.shift();
     };
 
     var length = function() {
         // Fill in
+        return data.length;
     };
 
     return {
