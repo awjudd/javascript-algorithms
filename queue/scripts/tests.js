@@ -36,4 +36,29 @@ describe('Testing Queues', function() {
 
         expect(names.remove()).toBe(undefined);
     });
+
+    it('Finds an element that exists', function() {
+        var names = new Queue();
+
+        names.add('Bobby');
+        names.add('Andrew');
+
+        var result = names.find('Andrew');
+
+        expect(result.value).toBe('Andrew');
+        expect(result.comparisons).toBe(2);
+
+    });
+
+    it('Finds undefined if the item is not found', function() {
+        var names = new Queue();
+
+        names.add('Bobby');
+        names.add('Andrew');
+
+        var result = names.find('Suzy');
+
+        expect(result.value).toBe(undefined);
+        expect(result.comparisons).toBe(3);
+    });
 });

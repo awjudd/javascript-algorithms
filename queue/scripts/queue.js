@@ -12,6 +12,29 @@ function Queue() {
         return data.shift();
     };
 
+    var find = function(value) {
+        var comparisons = 0;
+
+        for(var index in data) {
+            comparisons++;
+
+            if(value == data[index]) {
+                return {
+                    comparisons: comparisons,
+                    value: data[index]
+                };
+            }
+        }
+
+        // Add 1 to the comparisons because we are cheating and using arrays
+        comparisons++;
+
+        return {
+            comparisons: comparisons,
+            value: undefined
+        };
+    };
+
     var length = function() {
         // Fill in
         return data.length;
@@ -20,6 +43,7 @@ function Queue() {
     return {
         add: add,
         remove: remove,
-        length: length
+        length: length,
+        find: find
     };
 }
