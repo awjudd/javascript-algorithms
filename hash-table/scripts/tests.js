@@ -5,7 +5,7 @@ describe('Testing Hash Tables', function() {
 
         names.add('Bobby', 'Tables');
 
-        expect(names.find('Bobby')).toBe('Tables');
+        expect(names.find('Bobby').value).toBe('Tables');
         expect(names.length()).toBe(1);
     });
 
@@ -25,8 +25,8 @@ describe('Testing Hash Tables', function() {
         names.add('Andrew', 'Judd');
         names.add('Brandon', 'Sanderson');
 
-        expect(names.find('Bobby')).toBe('Tables');
-        expect(names.find('Brandon')).toBe('Sanderson');
+        expect(names.find('Bobby').value).toBe('Tables');
+        expect(names.find('Brandon').value).toBe('Sanderson');
         expect(names.length()).toBe(3);
     });
 
@@ -37,7 +37,32 @@ describe('Testing Hash Tables', function() {
         names.add('Andrew', 'Judd');
         names.add('Bobby', 'Sanderson');
 
-        expect(names.find('Bobby')).toBe('Sanderson');
+        expect(names.find('Bobby').value).toBe('Sanderson');
         expect(names.length()).toBe(2);
+    });
+
+    it('Finds an element that exists', function() {
+        var names = new HashTable();
+
+        names.add('Bobby', 'Tables');
+        names.add('Andrew', 'Judd');
+
+        var result = names.find('Andrew');
+
+        expect(result.value).toBe('Judd');
+        expect(result.comparisons).toBe(1);
+
+    });
+
+    it('Finds undefined if the item is not found', function() {
+        var names = new HashTable();
+
+        names.add('Bobby', 'Tables');
+        names.add('Andrew', 'Judd');
+
+        var result = names.find('Suzy');
+
+        expect(result.value).toBe(undefined);
+        expect(result.comparisons).toBe(1);
     });
 });

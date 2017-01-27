@@ -3,7 +3,6 @@ function HashTable() {
     var data = [];
 
     var add = function(key, value) {
-        // Fill in
         var hash = calculate(key);
 
         while(data[hash] !== undefined && data[hash].key != key) {
@@ -17,14 +16,19 @@ function HashTable() {
     };
 
     var find = function(key) {
-        // Fill in
         var hash = calculate(key);
 
-        while(data[hash] === undefined || data[hash].key != key) {
+        var comparisons = 1;
+
+        while(data[hash] !== undefined && data[hash].key != key) {
             hash++;
+            comparisons++;
         }
 
-        return data[hash].value;
+        return {
+            comparisons: comparisons,
+            value: data[hash] ? data[hash].value : undefined
+        };
     };
 
     var length = function() {
